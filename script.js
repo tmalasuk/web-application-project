@@ -154,10 +154,14 @@ $(document).ready(function () {
     //handling multiple jobs
     $('#addJobBtn').on('click', function () {
         const newInput = $(`
-            <div class="input-group mb-2">
+            <div class="input-group mb-2 rounded">
                 <input list="jobList" class="form-control job-input" id="jobInput${jobCount}" placeholder="Type to search..." required>
-                <button type="button" class="btn btn-outline-danger removeJobBtn">-</button>
+                <button type="button" class="btn bg-danger text-white removeJobBtn">-</button>
+                <div class="invalid-feedback">
+                                                Please choose a position before continuing.
+                                            </div>
             </div>
+            
             `);
         $('#jobContainer').append(newInput);
     });
@@ -211,27 +215,29 @@ $(document).ready(function () {
 
     $('#addEmployer').on('click', function () {
         const employerHtml = `
-        <div class="card mb-4 employer-card border-0 bg-white">
-                                                    <div class="card-body bg-light rounded">
+        <div class="card mb-4 employer-card bg-white">
+                                                    <div class="card-body">
 
                                                         <!-- Header -->
                                                         <div
-                                                            class="d-flex justify-content-between align-items-center mb-3">
-                                                            <strong class="text-uppercase small text-muted">
-                                                                Employment History
+                                                            class="d-flex justify-content-between align-items-center pb-3 border-bottom">
+                                                            <strong class="text-uppercase small text-dark mt-2">
+                                                                Employer
                                                             </strong>
                                                             <button type="button"
                                                                 class="btn text-white bg-danger btn-sm removeEmployer ms-auto">
                                                                 Remove
                                                             </button>
+                                                            
                                                         </div>
 
-                                                        <div class="row g-3">
+                                                        <div class="row g-3 mt-3">
 
                                                             <!-- Employer Info -->
                                                             <div class="col-md-6">
-                                                                <label class="form-label small">Employer Name<span class="required">*</span></label>
-                                                                <input type="text" class="form-control border-0"
+                                                                <label class="form-label small tech-label">Employer Name<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control"
                                                                     name="employerName[]" placeholder="Company Name"
                                                                     required>
 
@@ -241,8 +247,9 @@ $(document).ready(function () {
                                                             </div>
 
                                                             <div class="col-md-6">
-                                                                <label class="form-label small">Employer Phone<span class="required">*</span></label>
-                                                                <input type="tel" class="form-control border-0"
+                                                                <label class="form-label small tech-label">Employer Phone<span
+                                                                        class="required">*</span></label>
+                                                                <input type="tel" class="form-control"
                                                                     name="employerPhone[]" placeholder="(555) 555-5555"
                                                                     required>
 
@@ -254,44 +261,48 @@ $(document).ready(function () {
 
                                                             <!-- Address -->
                                                             <div class="col-12">
-                                                                <label class="form-label small">Street Address</label>
-                                                                <input type="text" class="form-control border-0"
+                                                                <label class="form-label small tech-label">Street Address</label>
+                                                                <input type="text" class="form-control"
                                                                     name="employerStreet[]" placeholder="123 Main St">
                                                             </div>
 
                                                             <div class="col-md-4">
-                                                                <label class="form-label small">City<span class="required">*</span></label>
-                                                                <input type="text" class="form-control border-0"
-                                                                    name="employerCity[]" required>
+                                                                <label class="form-label small tech-label">City<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control"
+                                                                    name="employerCity[]" required placeholder="City">
                                                                 <div class="invalid-feedback">City is required.</div>
                                                             </div>
 
                                                             <div class="col-md-2">
-                                                                <label class="form-label small">State<span class="required">*</span></label>
-                                                                <input type="text" class="form-control border-0"
-                                                                    name="employerState[]" required>
+                                                                <label class="form-label small tech-label">State<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control"
+                                                                    name="employerState[]" required placeholder="State">
                                                                 <div class="invalid-feedback">State is required.</div>
                                                             </div>
 
                                                             <div class="col-md-3">
-                                                                <label class="form-label small">Zip Code<span class="required">*</span></label>
-                                                                <input type="text" class="form-control border-0"
-                                                                    name="employerZip[]" required>
+                                                                <label class="form-label small tech-label">Zip Code<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control"
+                                                                    name="employerZip[]" required placeholder="Zip Code">
                                                                 <div class="invalid-feedback">Zip code is required.
                                                                 </div>
                                                             </div>
 
 
                                                             <div class="col-md-3">
-                                                                <label class="form-label small">Country</label>
-                                                                <input type="text" class="form-control border-0"
+                                                                <label class="form-label small tech-label">Country</label>
+                                                                <input type="text" class="form-control"
                                                                     name="employerCountry[]" placeholder="Country">
                                                             </div>
 
                                                             <!-- Dates -->
                                                             <div class="col-md-6">
-                                                                <label class="form-label small">Start Date<span class="required">*</span></label>
-                                                                <input type="date" class="form-control border-0"
+                                                                <label class="form-label small tech-label">Start Date<span
+                                                                        class="required">*</span></label>
+                                                                <input type="date" class="form-control"
                                                                     name="startDate[]" required>
 
                                                                 <div class="invalid-feedback">
@@ -301,32 +312,32 @@ $(document).ready(function () {
 
 
                                                             <div class="col-md-6">
-                                                                <label class="form-label small">End Date</label>
-                                                                <input type="date" class="form-control border-0"
+                                                                <label class="form-label small tech-label">End Date</label>
+                                                                <input type="date" class="form-control"
                                                                     name="endDate[]">
                                                             </div>
 
                                                             <!-- Position -->
                                                             <div class="col-12">
-                                                                <label class="form-label small">Position / Job
+                                                                <label class="form-label small tech-label">Position / Job
                                                                     Title</label>
-                                                                <input type="text" class="form-control border-0"
+                                                                <input type="text" class="form-control"
                                                                     name="position[]" placeholder="Job Title">
                                                             </div>
 
                                                             <!-- Duties -->
                                                             <div class="col-12">
-                                                                <label class="form-label small">Primary Duties</label>
-                                                                <textarea class="form-control border-0" rows="2"
+                                                                <label class="form-label small tech-label">Primary Duties</label>
+                                                                <textarea class="form-control" rows="2"
                                                                     name="duties[]"
                                                                     placeholder="Brief description of responsibilities"></textarea>
                                                             </div>
 
                                                             <!-- Reason -->
                                                             <div class="col-12">
-                                                                <label class="form-label small">Reason for
+                                                                <label class="form-label small tech-label">Reason for
                                                                     Leaving</label>
-                                                                <textarea class="form-control border-0" rows="2"
+                                                                <textarea class="form-control" rows="2"
                                                                     name="reasonForLeaving[]"
                                                                     placeholder="Optional"></textarea>
                                                             </div>
@@ -334,27 +345,30 @@ $(document).ready(function () {
                                                             <!-- Contact Permission -->
                                                             <div
                                                                 class="col-12 d-flex justify-content-center flex-wrap mt-2">
-                                                                <label class="form-label me-3 mb-0">
-                                                                    May we contact this employer?<span class="required">*</span>
+                                                                <label class="form-label me-3 mb-0" style="color: #6c757d;">
+                                                                    May we contact this employer?<span
+                                                                        class="required">*</span>
                                                                 </label>
 
                                                                 <div class="form-check form-check-inline">
                                                                     <input class="form-check-input" type="radio"
                                                                         name="contactEmployer${employerCount}"
                                                                         value="Yes" required>
-                                                                    <label class="form-check-label">Yes</label>
+                                                                    <label class="form-check-label" style="color: #6c757d;">Yes</label>
                                                                 </div>
 
                                                                 <div class="form-check form-check-inline">
                                                                     <input class="form-check-input" type="radio"
                                                                         name="contactEmployer${employerCount}"
                                                                         value="No" required>
-                                                                    <label class="form-check-label">No</label>
+                                                                    <label class="form-check-label" style="color: #6c757d;">No</label>
                                                                 </div>
                                                             </div>
 
 
                                                         </div>
+                                                    </div>
+                                                </div>
     `;
 
         $('#employerContainer').append(employerHtml);
@@ -386,12 +400,12 @@ $(document).ready(function () {
 
     $('#addSchool').on('click', function () {
         const schoolHtml = `
-        <div class="card mb-3 school-card border-0 bg-transparent">
-                                            <div class="card-body bg-light rounded">
+        <div class="card mb-3 school-card bg-white">
+                                            <div class="card-body">
 
                                                 <!-- Header -->
-                                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                                    <strong class="text-uppercase small text-muted">
+                                                <div class="d-flex justify-content-between align-items-center pb-3 border-bottom">
+                                                    <strong class="text-uppercase small text-dark">
                                                         Education History
                                                     </strong>
                                                     <button type="button"
@@ -400,14 +414,14 @@ $(document).ready(function () {
                                                     </button>
                                                 </div>
 
-                                                <div class="row g-3">
+                                                <div class="row g-3 pt-3">
 
                                                     <!-- School Name -->
                                                     <div class="col-md-6">
-                                                        <label class="form-label small">
+                                                        <label class="form-label small  tech-label">
                                                             School Name <span class="required">*</span>
                                                         </label>
-                                                        <input type="text" class="form-control border-0"
+                                                        <input type="text" class="form-control"
                                                             name="schoolName[]" placeholder="University or School Name"
                                                             required>
                                                         <div class="invalid-feedback">
@@ -417,10 +431,10 @@ $(document).ready(function () {
 
                                                     <!-- Location -->
                                                     <div class="col-md-6">
-                                                        <label class="form-label small">
+                                                        <label class="form-label small  tech-label">
                                                             Location <span class="required">*</span>
                                                         </label>
-                                                        <input type="text" class="form-control border-0"
+                                                        <input type="text" class="form-control"
                                                             name="schoolLocation[]" placeholder="City, State" required>
                                                         <div class="invalid-feedback">
                                                             Location is required.
@@ -429,19 +443,19 @@ $(document).ready(function () {
 
                                                     <!-- Degree -->
                                                     <div class="col-md-4">
-                                                        <label class="form-label small">
+                                                        <label class="form-label small  tech-label">
                                                             Degree Received
                                                         </label>
-                                                        <input type="text" class="form-control border-0" name="degree[]"
+                                                        <input type="text" class="form-control" name="degree[]"
                                                             placeholder="Associate, Bachelor, etc.">
                                                     </div>
 
                                                     <!-- Field of Study -->
                                                     <div class="col-md-4">
-                                                        <label class="form-label small">
+                                                        <label class="form-label small  tech-label">
                                                             Field of Study
                                                         </label>
-                                                        <input type="text" class="form-control border-0"
+                                                        <input type="text" class="form-control"
                                                             name="fieldOfStudy[]" placeholder="Major or Program">
                                                     </div>
 
@@ -449,7 +463,7 @@ $(document).ready(function () {
                                                     <div
                                                         class="col-md-4 col-12 d-flex align-items-end justify-content-center">
                                                         <div class="text-center">
-                                                            <label class="form-label small d-block mb-1">
+                                                            <label class="form-label small d-block mb-1 tech-label">
                                                                 Graduated? <span class="required">*</span>
                                                             </label>
 
@@ -457,8 +471,7 @@ $(document).ready(function () {
                                                                 <input class="form-check-input square-radio"
                                                                     type="radio" name="graduate${schoolCount}" value="Y"
                                                                     id="gradYes${schoolCount}" required>
-                                                                <label class="form-check-label"
-                                                                    for="gradYes${schoolCount}">
+                                                                <label class="form-check-label" for="gradYes$1"  style="color: #6c757d;">
                                                                     Yes
                                                                 </label>
                                                             </div>
@@ -467,8 +480,7 @@ $(document).ready(function () {
                                                                 <input class="form-check-input square-radio"
                                                                     type="radio" name="graduate${schoolCount}" value="N"
                                                                     id="gradNo${schoolCount}">
-                                                                <label class="form-check-label"
-                                                                    for="gradNo${schoolCount}">
+                                                                <label class="form-check-label" for="gradNo$1"  style="color: #6c757d;">
                                                                     No
                                                                 </label>
                                                             </div>
@@ -478,8 +490,6 @@ $(document).ready(function () {
                                                 </div>
                                             </div>
                                         </div>
-
-                                    </div>
     `;
 
         $('#schoolContainer').append(schoolHtml);
@@ -546,34 +556,37 @@ $(document).ready(function () {
 
         const referenceHtml = `
         <div class="card mb-3 border-0 reference-card">
-            <div class="card-body rounded  bg-light text-white">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <strong>Reference</strong>
-                    <button type="button" class="btn btn-sm text-white bg-danger removeReference">
-                        Remove
-                    </button>
-                </div>
+                                                <div class="card-body bg-white rounded border">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2 border-bottom">
+                                                        <strong style="color: #1b1c1b;">Reference</strong>
+                                                    </div>
 
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control border-0"
-                               name="referenceName[]" placeholder="Reference Name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control border-0"
-                               name="referenceRelationship[]" placeholder="Relationship" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="email" class="form-control border-0"
-                               name="referenceEmail[]" placeholder="Email" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="tel" class="form-control border-0"
-                               name="referencePhone[]" placeholder="Phone" required>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <label for="referenceName" class="tech-label">Reference Name</label>
+                                                            <input type="text" class="form-control"
+                                                                name="referenceName" placeholder="Reference Name"
+                                                                required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="referenceRelationship" class="tech-label">Relationship</label>
+                                                            <input type="text" class="form-control"
+                                                                name="referenceRelationship"
+                                                                placeholder="Relationship" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="referenceEmail" class="tech-label">Email</label>
+                                                            <input type="email" class="form-control"
+                                                                name="referenceEmail" placeholder="john@example.com" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="referencePhone" class="tech-label">Phone</label>
+                                                            <input type="tel" class="form-control"
+                                                                name="referencePhone" placeholder="(555) 555-5555" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
     `;
 
         $('#referenceContainer').append(referenceHtml);
@@ -608,7 +621,7 @@ $(document).ready(function () {
         if (!isDesktop()) return;
 
         e.preventDefault();
-        
+
 
         var target = $(this).attr('href').replace('#', '');
         var sectionToShow = '#top-' + target;
@@ -689,7 +702,8 @@ $(document).ready(function () {
 
             if (!form.checkValidity()) {
                 e.preventDefault();
-                e.stopPropagation();
+                e.stopPropagation($currentForm);
+                
                 $currentForm.addClass('was-validated');
                 return;
             }
@@ -740,9 +754,6 @@ $(document).ready(function () {
 
     showSection(currentIndex);
     $('#sectionNav').removeClass('d-none');
-
-
-
 
 
 

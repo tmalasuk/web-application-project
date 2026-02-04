@@ -1,10 +1,17 @@
 /* High-tech label style */
-.form-label.tech-label {
+.tech-label {
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #6c757d;
     margin-bottom: 0.25rem;
+}
+
+.tech-label-no-margin {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6c757d;
 }
 
 /* Required indicator */
@@ -16,10 +23,11 @@
 /* Inputs feel more modern */
 .form-control {
     border-radius: 0.6rem;
-    border: 1px solid #ced4da;
+    border: 1px solid #e5e9ed;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.bg-info{
-    background-color: #0047c1 !important; 
+.form-check-input {
+    border: 2px solid #2d2828;
 }
+
