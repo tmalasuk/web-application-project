@@ -1,0 +1,25 @@
+/* High-tech label style */
+.form-label.tech-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+/* Required indicator */
+.form-label .required {
+    color: #c54e10;
+    margin-left: 4px;
+}
+
+/* Inputs feel more modern */
+.form-control {
+    border-radius: 0.6rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bg-info{
+    background-color: #0047c1 !important; 
+}

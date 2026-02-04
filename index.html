@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yellowstone Application</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstraptheme.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- initial confirmation modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg p-3">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Disability Information</h5>
+                </div>
+                <div class="modal-body">
+                    <p>If you are an individual with disabilities who needs accommodation or you are having difficulty
+                        using our web site to apply for employment, please contact the Human Resources team at <b>(307)
+                            344-5324</b></p>
+                    <p>Xanterra Parks & Resorts (Authorized Concessioner of the National Park Service) is an equal
+                        opportunity employer and does not discriminate against any individual in any phase of employment
+                        on the basis of race, color, creed, religion, sexual orientation, national origin, ancestry,
+                        veteran status, age, disability or any other legally protected status under applicable law.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="disabilityConfirmed">
+                        I Understand
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- application submitted check modal -->
+    <div class="modal fade" id="questionModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <p>Have you already submitted an application for this season's employment?</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pt-0">
+                    <button type="button" class="btn btn-secondary" id="alreadyYes">Yes</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- warning/instructions -->
+    <div class="modal fade" id="alreadySubmittedModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="text-danger"><strong>Please do not submit more than one application for this
+                            season.</strong></p>
+                    <p>If you need to make changes to your previously submitted application, please email
+                        <strong><a class="link-info"
+                                href="mailto:info@yellowstonejobs.com">info@yellowstonejobs.com</a></strong>.
+                    </p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" id="closePageButton"><a
+                            class="text-dark text-decoration-none fw-semibold" href="https://www.nps.gov/yell/index.htm"
+                            text-black>Close New Application</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header>
+        <div class="py-1 w-100 bg-warning">
+            <div class="text-center text-md-start">
+                <img src="c7ce5cc8-f03f-4ea0-9624-0b3a6ec989ec.png" class="img-fluid" alt="Yellowstone Logo"
+                    style="width:400px;">
+            </div>
+        </div>
+    </header>
+    <main class="bg-white">
+
+        <div class="container-fluid d-flex m-0 p-0">
+            <!-- desktop sidebar -->
+            <div class=" d-none d-md-block bg-secondary min-vh-100" style="min-width: 350px;">
+                <div class="container pt-5 d-flex flex-column gap-1" style="width: 75%;">
+                    <a href="#jobselect" class="btn w-100 text-center sidebar-link ">Career Path</a>
+                    <a href="#aboutyou" class="btn w-100 text-center sidebar-link disabled border-0">About You</a>
+                    <a href="#experience" class="btn w-100 text-center sidebar-link disabled border-0">Experience</a>
+                    <a href="#education" class="btn w-100 text-center sidebar-link disabled border-0">Education</a>
+                    <a href="#considerations"
+                        class="btn w-100 text-center sidebar-link disabled border-0">Considerations</a>
+                    <a href="#workEligible" class="btn w-100 text-center sidebar-link disabled border-0">Work
+                        Eligibility</a>
+                    <a href="#reference" class="btn w-100 text-center sidebar-link disabled border-0">Reference</a>
+
+                </div>
+
+                <div class="container d-flex pt-5 justify-content-center">
+                    <a href="submitted.html" class="btn w-75 text-center bg-success disabled border-0 d-none" id="sidebarApply">APPLY</a>
+                </div>
+            </div>
+
+
+
+            <!-- main application section -->
+
+            <div class="container bg-white p-0 mt-md-5 mx-5 ms-auto me-auto">
+                <div id="sectionNav" class="d-none d-md-flex justify-content-end gap-2 pt-3 px-3 bg-white">
+                    <button id="backBtn" class="btn btn-outline-secondary me-auto">
+                        &larr; Back
+                    </button>
+                    <button id="nextBtn" class="btn btn-success ms-auto">
+                        Next &rarr;
+                    </button>
+                </div>
+                <div class="accordion" id="accordionExample" class="border-0">
+
+
+
+                    <!-- job select -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-jobselect">
+
+                        <h2 class="accordion-header d-block d-md-none">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-jobselect" aria-expanded="true" aria-controls="collapseOne">
+                                Career Path
+                            </button>
+                        </h2>
+
+
+                        <div class="accordion-collapse collapse show" id="section-jobselect">
+                            <div class="accordion-body d-block bg-white text-dark">
+                                <form id="careerForm" class="needs-validation" novalidate>
+                                    <p class="mb-0">Desired Position(s) <span class="text-danger">*</span></p>
+                                    <div class="ms-2" style="font-size: x-small;">
+                                        <ul>
+                                            <li>
+                                                <p class="mb-1">Please select the position(s) that you are applying for
+                                                    in order of preference.</p>
+                                            </li>
+                                            <li>
+                                                <p class="mb-1">Asterisks (***) by a job position indicates that little
+                                                    or no experience needed.</p>
+                                            </li>
+                                            <li>
+                                                <p class="mb-1">The letters D.L. indicates the position requires a valid
+                                                    Drivers License.</p>
+                                            </li>
+                                            <li>
+                                                <p class="mb-1">If you desire an Internship, please select Internship as
+                                                    your first choice.</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div id="jobContainer">
+                                        <div class="input-group has-validation mb-2">
+                                            <input list="jobList" class="form-control job-input" id="jobInput0"
+                                                placeholder="Type to search..." required>
+                                            <button type="button" class="btn bg-primary text-white"
+                                                data-bs-toggle="tooltip" data-bs-title="Add more jobs by clicking here."
+                                                id="addJobBtn">+</button>
+                                            <div class="invalid-feedback">
+                                                Please choose a position before continuing.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 d-none has-validation" id="dL">
+                                        <input type="text" class="form-control" id="driversLicense"
+                                            placeholder="Driver's License Number (Required)">
+                                        <div class="invalid-feedback">
+                                            You've selected a position that requires a valid Driver's License.
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4 has-validation" id="seasonalBox">
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="rounded py-3 bg-info ps-3 small h-100">
+                                                <input class="form-check-input me-3" type="checkbox" name="seasonal"
+                                                    value="Seasonal" id="seasonal">
+                                                <label class="form-check-label text-white ms-2" for="seasonal">
+                                                    I am interested in seasonal work
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-none col-12 col-md-6 mt-2 mt-md-0 small" id="seasonalDates">
+                                            <div class="row g-2">
+                                                <div class="form-group col-6">
+                                                    <label class="form-label mb-0 small">Start<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        id="seasonalStart">
+
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label class="form-label mb-0 small">End<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        id="seasonalEnd">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- about you -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-aboutyou">
+                        <h2 class="accordion-header d-block d-md-none border-0">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-aboutyou" aria-expanded="false" aria-controls="collapseTwo">
+                                About You
+                            </button>
+                        </h2>
+
+                        <div class="accordion-collapse collapse show" id="section-aboutyou">
+                            <div class="accordion-body bg-white text-dark">
+                                <form>
+                                    <!-- name -->
+                                    <div class="row g-3 has-validation">
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label tech-label">
+                                                First Name <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" placeholder="First Name" required>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label tech-label">
+                                                Last Name <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" placeholder="Last Name" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- address -->
+                                    <div class="row g-3 mt-1 has-validation">
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <label class="form-label tech-label">
+                                                City <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" placeholder="City" required>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-3 col-4">
+                                            <label class="form-label tech-label">
+                                                State <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" placeholder="State" required>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-3 col-8">
+                                            <label class="form-label tech-label">
+                                                Zip Code <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" placeholder="Zipcode" required>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-12 col-12">
+                                            <label class="form-label tech-label">
+                                                Country <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" placeholder="Country" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- contact -->
+                                    <div class="row g-3 mt-1">
+                                        <div class="col-md-6 col-12 has-validation">
+                                            <label class="form-label tech-label">
+                                                Phone Number <span class="required">*</span>
+                                            </label>
+                                            <input type="tel" class="form-control" placeholder="(555) 555-5555"
+                                                required>
+                                        </div>
+
+                                        <div class="col-md-6 col-12 has-validation">
+                                            <label class="form-label tech-label">
+                                                Email Address <span class="required">*</span>
+                                            </label>
+                                            <input type="email" class="form-control" placeholder="name@example.com"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <!-- felony Q -->
+                                    <div class="row g-3 mt-1">
+                                        <label class="form-label tech-label text-dark">
+                                            Legal Disclosure <span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-12 d-flex flex-column flex-md-row bg-info p-2 rounded text-white"
+                                            style="font-size: small;">
+                                            <label class="form-label me-md-5 mb-0 d-flex align-items-center">
+                                                Have you ever been convicted of a felony... or do you have any
+                                                outstanding wants or warrants?
+                                            </label>
+
+                                            <div class="d-flex justify-content-center align-items-center"
+                                                id="felonyBox">
+                                                <div class="form-check form-check-inline mb-0">
+                                                    <input class="form-check-input" type="radio" name="felony" value="Y"
+                                                        id="felonyYes" required>
+                                                    <label class="form-check-label" for="felonyYes">Yes</label>
+                                                </div>
+                                                <div class="form-check form-check-inline mb-0">
+                                                    <input class="form-check-input" type="radio" name="felony" value="N"
+                                                        id="felonyNo" required>
+                                                    <label class="form-check-label" for="felonyNo">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- felony details -->
+                                    <div class="row g-3 mt-1 d-none has-validation" id="felonyDetails">
+                                        <div class="card-body bg-light rounded">
+                                            <div class="row g-3 p-3">
+
+                                                <div class="col-md-4 m-0 mt-2">
+                                                    <label class="form-label small text-white">Date of
+                                                        Conviction</label>
+                                                    <input type="date" class="form-control border-0"
+                                                        name="previousStartDate" id="convictionDate">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control border-0" rows="2"
+                                                        name="reasonForLeaving[]"
+                                                        placeholder="Details of Felony (Required)"
+                                                        id="felonyDetailsText"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- experience -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-experience">
+                        <h2 class="accordion-header d-block d-md-none">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-experience" aria-expanded="false" aria-controls="collapseTwo">
+                                Experience
+                            </button>
+                        </h2>
+
+                        <div class="accordion-collapse collapse show" id="section-experience">
+                            <div class="accordion-body bg-white text-dark">
+                                <form id="employmentForm" class="needs-validation" novalidate>
+                                    <div id="employerContainer">
+                                        <form id="employmentForm">
+                                            <div id="employerContainer">
+
+                                                <div class="card mb-4 employer-card border-0 bg-white">
+                                                    <div class="card-body bg-light rounded">
+
+                                                        <!-- Header -->
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center mb-3">
+                                                            <strong class="text-uppercase small text-muted">
+                                                                Employment History
+                                                            </strong>
+                                                            <button type="button"
+                                                                class="btn text-white bg-danger btn-sm removeEmployer ms-auto">
+                                                                Remove
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="row g-3">
+
+                                                            <!-- Employer Info -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label small">Employer Name<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="employerName[]" placeholder="Company Name"
+                                                                    required>
+
+                                                                <div class="invalid-feedback">
+                                                                    Employer name is required.
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label class="form-label small">Employer Phone<span
+                                                                        class="required">*</span></label>
+                                                                <input type="tel" class="form-control border-0"
+                                                                    name="employerPhone[]" placeholder="(555) 555-5555"
+                                                                    required>
+
+                                                                <div class="invalid-feedback">
+                                                                    Please enter a valid phone number.
+                                                                </div>
+                                                            </div>
+
+
+                                                            <!-- Address -->
+                                                            <div class="col-12">
+                                                                <label class="form-label small">Street Address</label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="employerStreet[]" placeholder="123 Main St">
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label class="form-label small">City<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="employerCity[]" required>
+                                                                <div class="invalid-feedback">City is required.</div>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <label class="form-label small">State<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="employerState[]" required>
+                                                                <div class="invalid-feedback">State is required.</div>
+                                                            </div>
+
+                                                            <div class="col-md-3">
+                                                                <label class="form-label small">Zip Code<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="employerZip[]" required>
+                                                                <div class="invalid-feedback">Zip code is required.
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-md-3">
+                                                                <label class="form-label small">Country</label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="employerCountry[]" placeholder="Country">
+                                                            </div>
+
+                                                            <!-- Dates -->
+                                                            <div class="col-md-6">
+                                                                <label class="form-label small">Start Date<span
+                                                                        class="required">*</span></label>
+                                                                <input type="date" class="form-control border-0"
+                                                                    name="startDate[]" required>
+
+                                                                <div class="invalid-feedback">
+                                                                    Start date is required.
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-md-6">
+                                                                <label class="form-label small">End Date</label>
+                                                                <input type="date" class="form-control border-0"
+                                                                    name="endDate[]">
+                                                            </div>
+
+                                                            <!-- Position -->
+                                                            <div class="col-12">
+                                                                <label class="form-label small">Position / Job
+                                                                    Title</label>
+                                                                <input type="text" class="form-control border-0"
+                                                                    name="position[]" placeholder="Job Title">
+                                                            </div>
+
+                                                            <!-- Duties -->
+                                                            <div class="col-12">
+                                                                <label class="form-label small">Primary Duties</label>
+                                                                <textarea class="form-control border-0" rows="2"
+                                                                    name="duties[]"
+                                                                    placeholder="Brief description of responsibilities"></textarea>
+                                                            </div>
+
+                                                            <!-- Reason -->
+                                                            <div class="col-12">
+                                                                <label class="form-label small">Reason for
+                                                                    Leaving</label>
+                                                                <textarea class="form-control border-0" rows="2"
+                                                                    name="reasonForLeaving[]"
+                                                                    placeholder="Optional"></textarea>
+                                                            </div>
+
+                                                            <!-- Contact Permission -->
+                                                            <div
+                                                                class="col-12 d-flex justify-content-center flex-wrap mt-2">
+                                                                <label class="form-label me-3 mb-0">
+                                                                    May we contact this employer?<span
+                                                                        class="required">*</span>
+                                                                </label>
+
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="contactEmployer${employerCount}"
+                                                                        value="Yes" required>
+                                                                    <label class="form-check-label">Yes</label>
+                                                                </div>
+
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="contactEmployer${employerCount}"
+                                                                        value="No" required>
+                                                                    <label class="form-check-label">No</label>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Add Employer -->
+
+                                        </form>
+
+                                    </div>
+                                    <div class="d-flex my-3">
+                                        <button type="button" class="btn bg-primary text-white ms-auto"
+                                            id="addEmployer">
+                                            + Add Employment History
+                                        </button>
+                                    </div>
+                                    <div class="col-12 d-flex flex-column flex-md-row bg-info p-2 my-4 rounded text-white"
+                                        style="font-size: small;">
+                                        <label class="form-label me-md-5 mb-0 d-flex text-center">Have you ever worked
+                                            for Xanterra Parks and
+                                            Resorts, Amfac Park and Resorts, Fred Harvey or TWRS company?</label>
+                                        <div class="d-flex  justify-content-center">
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio"
+                                                    name="previouslyEmployed" value="Y" id="previouslyEmployedYes">
+                                                <label class="form-check-label" for="gradYes${schoolCount}">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio"
+                                                    name="previouslyEmployed" value="N" id="previousEmployedNo">
+                                                <label class="form-check-label" for="gradNo${schoolCount}">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="previousEmploymentDetails" class="card mb-4 border-0 d-none mt-4">
+                                        <div class="card-body bg-light rounded">
+                                            <strong class="d-block mb-3">Previous Park Experience</strong>
+
+                                            <div class="row g-3">
+
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control border-0"
+                                                        name="employeeNumber" placeholder="Employee Number">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <select class="form-select border-0" name="lastLocation">
+                                                        <option value="">Last Location Worked</option>
+                                                        <option>Yellowstone National Park</option>
+                                                        <option>Grand Canyon</option>
+                                                        <option>Glacier National Park</option>
+                                                        <option>Rocky Mountain National Park</option>
+                                                        <!-- TODO: add actual locations  -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label small">Start Date</label>
+                                                    <input type="date" class="form-control border-0"
+                                                        name="previousStartDate">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label small">End Date</label>
+                                                    <input type="date" class="form-control border-0"
+                                                        name="previousEndDate">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- education -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-education">
+                        <h2 class="accordion-header d-block d-md-none">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-education" aria-expanded="false" aria-controls="collapseTwo">
+                                Education
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="section-education">
+                            <div class="accordion-body bg-white text-dark">
+                                <form id="educationForm">
+                                    <div id="schoolContainer">
+                                        <div class="card mb-3 school-card border-0 bg-transparent">
+                                            <div class="card-body bg-light rounded">
+
+                                                <!-- Header -->
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <strong class="text-uppercase small text-muted">
+                                                        Education History
+                                                    </strong>
+                                                    <button type="button"
+                                                        class="btn text-white bg-danger btn-sm removeSchool">
+                                                        Remove
+                                                    </button>
+                                                </div>
+
+                                                <div class="row g-3">
+
+                                                    <!-- School Name -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label small">
+                                                            School Name <span class="required">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control border-0"
+                                                            name="schoolName[]" placeholder="University or School Name"
+                                                            required>
+                                                        <div class="invalid-feedback">
+                                                            School name is required.
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Location -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label small">
+                                                            Location <span class="required">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control border-0"
+                                                            name="schoolLocation[]" placeholder="City, State" required>
+                                                        <div class="invalid-feedback">
+                                                            Location is required.
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Degree -->
+                                                    <div class="col-md-4">
+                                                        <label class="form-label small">
+                                                            Degree Received
+                                                        </label>
+                                                        <input type="text" class="form-control border-0" name="degree[]"
+                                                            placeholder="Associate, Bachelor, etc.">
+                                                    </div>
+
+                                                    <!-- Field of Study -->
+                                                    <div class="col-md-4">
+                                                        <label class="form-label small">
+                                                            Field of Study
+                                                        </label>
+                                                        <input type="text" class="form-control border-0"
+                                                            name="fieldOfStudy[]" placeholder="Major or Program">
+                                                    </div>
+
+                                                    <!-- Graduate -->
+                                                    <div
+                                                        class="col-md-4 col-12 d-flex align-items-end justify-content-center">
+                                                        <div class="text-center">
+                                                            <label class="form-label small d-block mb-1">
+                                                                Graduated? <span class="required">*</span>
+                                                            </label>
+
+                                                            <div class="form-check form-check-inline mb-0">
+                                                                <input class="form-check-input square-radio"
+                                                                    type="radio" name="graduate${schoolCount}" value="Y"
+                                                                    id="gradYes${schoolCount}" required>
+                                                                <label class="form-check-label" for="gradYes$1">
+                                                                    Yes
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-check form-check-inline mb-0">
+                                                                <input class="form-check-input square-radio"
+                                                                    type="radio" name="graduate${schoolCount}" value="N"
+                                                                    id="gradNo${schoolCount}">
+                                                                <label class="form-check-label" for="gradNo$1">
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex  mb-3">
+
+                                        <button type="button" class="btn bg-primary text-white btn-sm mb-4 ms-auto"
+                                            id="addSchool">
+                                            + Add Education
+                                        </button>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- considerations -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-considerations">
+                        <h2 class="accordion-header d-block d-md-none">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-considerations" aria-expanded="false"
+                                aria-controls="collapseTwo">
+                                Considerations
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="section-considerations">
+                            <div class="accordion-body bg-white text-dark">
+                                <form class="mb-2 border-0 mb-2 border-0">
+
+                                    <div class="col-12 d-flex flex-column flex-md-row bg-info rounded text-white w-50">
+                                        <div class="rounded p-2 ps-3 bg-info d-flex" id="yesJoint">
+                                            <input class="form-check-input" type="checkbox" name="jointApp"
+                                                value="jointApp" id="jointApp">
+                                            <label class="form-check-label text-white ms-2" for="jointApp">I am
+                                                applying with a friend or spouse</label>
+                                        </div>
+                                    </div>
+                                    <div class="card-body bg-light rounded p-4 text-white mt-3 d-none"
+                                        id="jointAppDetails">
+                                        <!-- Friend / Spouse name -->
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control border-0" name="friendSpouseName"
+                                                    placeholder="Friend or Spouse Full Name">
+                                            </div>
+                                        </div>
+
+                                        <!-- Travel + work together -->
+                                        <div class="row g-3">
+                                            <div class="col-md-6 d-flex flex-column flex-md-row align-items-md-center">
+                                                <label class="form-label me-md-3 mb-2 mb-md-0">
+                                                    Traveling together?
+                                                </label>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input square-radio" type="radio"
+                                                        name="travelTogether" value="Yes">
+                                                    <label class="form-check-label">Yes</label>
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input square-radio" type="radio"
+                                                        name="travelTogether" value="No">
+                                                    <label class="form-check-label">No</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 d-flex flex-column flex-md-row align-items-md-center">
+                                                <label class="form-label me-md-3 mb-2 mb-md-0">
+                                                    Work in the same location?
+                                                </label>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input square-radio" type="radio"
+                                                        name="sameLocation" value="Yes">
+                                                    <label class="form-check-label">Yes</label>
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input square-radio" type="radio"
+                                                        name="sameLocation" value="No">
+                                                    <label class="form-check-label">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Housing Preferences -->
+                                    <div class="mt-3 p-2 ps-3 bg-info rounded text-white">
+                                        <strong class="d-block mb-1">Housing Preference<span
+                                                class="required">*</span></strong>
+
+                                        <div class="row g-3 mb-1">
+                                            <div class="col-md-5">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="housingPreference" value="Dormitory" required>
+                                                    <label class="form-check-label">
+                                                        Dormitory (18+, no pets or children)
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="housingPreference" value="RV" required>
+                                                    <label class="form-check-label">
+                                                        RV or Trailer (space limited)
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="housingPreference" value="Local" required>
+                                                    <label class="form-check-label">
+                                                        Local Resident
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RV / Trailer details -->
+
+
+                                    <div class="card-body bg-light rounded px-4 py-3 text-white mt-3 d-none"
+                                        id="rvDetails">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control border-0" name="rvModel"
+                                                    placeholder="RV / Trailer Model">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control border-0" name="rvYear"
+                                                    placeholder="Year">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control border-0" name="rvLength"
+                                                    placeholder="Length">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" border-0 mb-4">
+                                        <div class=" bg-white rounded">
+                                            <div class="mt-3 p-2 ps-3 bg-info rounded text-white d-flex mb-3"
+                                                style="font-size: small;">
+                                                <label class="form-label w-75">
+                                                    Are you a spouse, dependent, relative, or Domestic Partner of a
+                                                    National Park Service employee?
+                                                </label>
+
+                                                <div class="form-check form-check-inline mt-3 ms-auto">
+                                                    <input class="form-check-input" type="radio" name="npsRelation"
+                                                        id="npsYes" value="yes">
+                                                    <label class="form-check-label" for="npsYes">Yes</label>
+                                                </div>
+
+                                                <div class="form-check form-check-inline mt-3">
+                                                    <input class="form-check-input" type="radio" name="npsRelation"
+                                                        id="npsNo" value="no">
+                                                    <label class="form-check-label" for="npsNo">No</label>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Conditional Details -->
+                                            <div id="npsDetails" class="d-none bg-light rounded p-3">
+                                                <div class="row g-3">
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control border-0 pt-0 mt-0"
+                                                            name="npsEmployeeName" placeholder="NPS Employee Name(s)">
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <select class="form-select border-0 pt-0 mt-0"
+                                                            name="npsLocation">
+                                                            <option value="">NPS Employee Location</option>
+                                                            <option>Yellowstone National Park</option>
+                                                            <option>Grand Canyon National Park</option>
+                                                            <option>Yosemite National Park</option>
+                                                            <option>Other</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <!-- Notice -->
+                                            <div class="text-dark p-2 mt-2 small">
+                                                For certain positions and reporting relationships, we are unable to
+                                                employ family relatives.
+                                                Please identify any relatives currently employed by Xanterra Parks
+                                                and
+                                                Resorts, Amfac Park and
+                                                Resorts, Fred Harvey or TWRS company.
+                                            </div>
+
+                                            <!-- Relatives Disclosure -->
+                                            <div class="mb-2">
+                                                <textarea class="form-control" rows="3" name="companyRelatives"
+                                                    placeholder="List relative name(s), company, and location (if applicable)"></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- work eligibility -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-workEligible">
+                        <h2 class="accordion-header d-block d-md-none">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-work" aria-expanded="false" aria-controls="collapseTwo">
+                                Work Eligibility
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="section-work">
+                            <div class="accordion-body bg-white text-dark">
+                                <form>
+                                    <div class="col-12 d-flex flex-column flex-md-row bg-info p-3 rounded text-white mb-3"
+                                        style="font-size: small;">
+                                        <label class="form-label me-md-5 mb-0 mt-auto mb-1 d-flex text-center">
+                                            Can you provide proof that you are eligible to work in the United States?
+                                            <span class="required">*</span>
+                                        </label>
+
+                                        <div class="d-flex justify-content-center ms-auto mt-auto">
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio"
+                                                    name="workEligible" value="Yes" id="workEligibleYes" required>
+                                                <label class="form-check-label" for="workEligibleYes">Yes</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio"
+                                                    name="workEligible" value="No" id="workEligibleNo">
+                                                <label class="form-check-label" for="workEligibleNo" required>No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="sponsorSection" class="card mb-4 border-0 d-none">
+                                        <div class="card-body bg-danger rounded has-validation">
+
+                                            <strong class="d-block text-center text-white mb-3 small">
+                                                International applicants must have a sponsoring agency to continue.
+                                                Please select one of the approved agencies below.
+                                            </strong>
+
+                                            <label class="form-label text-white small d-block text-center mb-2">
+                                                Sponsoring Agency <span class="required-asterisk">*</span>
+                                            </label>
+
+                                            <div class="d-flex justify-content-center gap-2">
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="sponsoringAgency"
+                                                        value="InterExchange">
+                                                    <label class="form-check-label text-white">
+                                                        InterExchange
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="sponsoringAgency"
+                                                        value="CIEE">
+                                                    <label class="form-check-label text-white">
+                                                        CIEE
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="sponsoringAgency"
+                                                        value="Intrax">
+                                                    <label class="form-check-label text-white">
+                                                        Intrax
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="sponsoringAgency"
+                                                        value="SWAP">
+                                                    <label class="form-check-label text-white">
+                                                        SWAP Working Holidays
+                                                    </label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="invalid-feedback d-block text-center text-white mt-2">
+                                                Please select a sponsoring agency.
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 d-flex flex-column flex-md-row bg-info p-3 rounded text-white mb-3"
+                                        style="font-size: small;">
+                                        <label class="form-label me-md-5 mb-0 mt-auto mb-1 d-flex text-center">
+                                            Will you be 18 years of age or older when you arrive in Yellowstone?
+                                        </label>
+
+                                        <div class="d-flex justify-content-center ms-auto">
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio" name="age18"
+                                                    value="Yes" id="age18Yes">
+                                                <label class="form-check-label" for="age18Yes">Yes</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio" name="age18"
+                                                    value="No" id="age18No">
+                                                <label class="form-check-label" for="age18No">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex flex-column flex-md-row bg-info p-3 rounded text-white mb-3"
+                                        style="font-size: small;">
+                                        <label class="form-label me-md-5 mb-0 mt-auto mb-1 d-flex text-center">
+                                            Are you 21 years of age or older? (Required for vehicle operation / alcohol
+                                            service)
+                                        </label>
+
+                                        <div class="d-flex justify-content-center ms-auto">
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio" name="age21"
+                                                    value="Yes" id="age21Yes">
+                                                <label class="form-check-label" for="age21Yes">Yes</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline mb-0 mt-2">
+                                                <input class="form-check-input square-radio" type="radio" name="age21"
+                                                    value="No" id="age21No">
+                                                <label class="form-check-label" for="age21No">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- reference -->
+                    <div class="accordion-item bg-white border-0 mt-3" id="top-reference">
+                        <h2 class="accordion-header d-block d-md-none">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#section-reference" aria-expanded="false" aria-controls="collapseTwo">
+                                References
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse show" id="section-reference">
+                            <div class="accordion-body bg-white text-dark">
+                                <div class="card mb-4 border-0">
+                                    <div class="card-body bg-white text-dark rounded">
+
+
+
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <p class="small mb-3 text-danger mt-3">
+                                                At least one professional reference is required.
+                                            </p>
+                                            <button type="button" class="btn btn-outline-primary btn-sm"
+                                                id="addReference">
+                                                + Add Reference
+                                            </button>
+                                        </div>
+
+                                        <div id="referenceContainer">
+                                            <div class="card mb-3 border-0 reference-card">
+                                                <div class="card-body rounded  bg-light text-white">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <strong>Reference</strong>
+                                                    </div>
+
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control border-0"
+                                                                name="referenceName[]" placeholder="Reference Name"
+                                                                required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control border-0"
+                                                                name="referenceRelationship[]"
+                                                                placeholder="Relationship" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="email" class="form-control border-0"
+                                                                name="referenceEmail[]" placeholder="Email" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="tel" class="form-control border-0"
+                                                                name="referencePhone[]" placeholder="Phone" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container d-md-none d-flex py-5 justify-content-center bg-white">
+                    <a href="submitted.html" class="btn w-75 text-center bg-success">APPLY</a>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </main>
+    <!-- ai generated business footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center text-md-start">
+            <div class="row align-items-center">
+                <div class="col-md-8 mb-3 mb-md-0">
+                    <strong>Yellowstone National Park Lodges</strong><br>
+                    Human Resources<br>
+                    PO Box 165, Yellowstone National Park<br>
+                    WY 82190
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <div>📞 (307) 344-5324</div>
+                    <div>📠 (307) 344-5441</div>
+                    <div>
+                        ✉️ <a href="mailto:info@yellowstonejobs.com" class="text-light text-decoration-none">
+                            info@yellowstonejobs.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
